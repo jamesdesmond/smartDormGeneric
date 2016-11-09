@@ -15,7 +15,7 @@ public class Settings implements LCDApps {
     }
     @Override
     public String getName() {
-        return "Change Backlight\nColor";
+        return "Change Backlight";
     }
 
     private void menu(ILCD ilcd, Button button)throws IOException {

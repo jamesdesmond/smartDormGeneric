@@ -11,6 +11,8 @@ import java.io.IOException;
 public class Runner {
     private  static final LCDApps[] APPS = new LCDApps[]{
         //INSERT MENU ITEMS HERE
+        //SAMPLE
+        new showWeather(),new sendText(Configuration.People.DEFAULT),new showIP(),new Random(),new Settings(),new Sleep()
     };
     private boolean inApp;
     private int currentMenu;
