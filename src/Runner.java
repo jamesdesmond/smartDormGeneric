@@ -6,27 +6,37 @@ import se.hirt.pi.adafruitlcd.*;
 import se.hirt.pi.adafruitlcd.mockup.MockupLCD;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 
 public class Runner {
-    private  static final LCDApps[] APPS = new LCDApps[]{
-        //INSERT MENU ITEMS HERE
-        //SAMPLE
-        new showWeather(),new sendText(Configuration.People.DEFAULT),new showIP(),new Random(),new Settings(),new Sleep()
-    };
-    private boolean inApp;
-    private int currentMenu;
-    private Color defaultColor;
-
     public Runner() {
+        ConfigurationEnums.readConfigurationFile();
+        System.out.println("nice");
         inApp = false;
         currentMenu = 0;
         defaultColor = Color.RED;
+        System.out.println(Arrays.asList(ConfigurationEnums.peopleArrayList));
     }
+    private static final LCDApps[] APPS = new LCDApps[]{
+            //INSERT MENU ITEMS HERE
+            //Be careful to only reference indices in peopleArrayList that have been filled
+            new showWeather(),
+            new sendText(), //TODO: Figure out how to make this work
+            new showIP(),
+            new Random(),
+            new Settings(),
+            new Sleep()
+    };
+    private boolean inApp;
+    private int currentMenu;
+
+    private Color defaultColor;
+
     private void menu(ILCD ilcd) throws IOException {
         ilcd.setBacklight(defaultColor);
         ilcd.clear();
-        ilcd.setText(1 + ".)\n" +APPS[0].getName());
+        ilcd.setText(1 + ".)\n" + APPS[0].getName());
         ButtonPressedObserver observer = new ButtonPressedObserver(ilcd);
         observer.addButtonListener(new ButtonListener() {
             @Override
@@ -72,7 +82,7 @@ public class Runner {
                             ilcd.clear();
                             ilcd.setText(currentMenu + 1 + ".)\n" + APPS[currentMenu].getName());
                         } else {
-                            APPS[currentMenu].run(ilcd,button);
+                            APPS[currentMenu].run(ilcd, button);
                         }
                     }
                 } catch (IOException e) {
@@ -80,8 +90,10 @@ public class Runner {
                 }
             }
         });
-        while(true) {}
+        while (true) {
+        }
     }
+
     public static void main(String Args[]) throws IOException {
         final ILCD ilcd = new MockupLCD();
         new Runner().menu(ilcd);

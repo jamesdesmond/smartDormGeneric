@@ -7,19 +7,19 @@ import java.io.IOException;
  * Created by james on 10/12/16.
  */
 /*
- *Tip for having multiple possible recipiants:
- * In Runners LCDApps[] add a seperate entry for each person, e.g. new sendText(Configuration.People.DEFAULT)
+ *Tip for having multiple possible recipients:
+ * In Runners LCDApps[] add a separate entry for each person, e.g. new sendText(Configuration.People.DEFAULT)
  */
 public class sendText implements LCDApps {
     private int currentMenu;
-    private Configuration.People person;
-    private static final String[] messages = {"Message\nOptions"}; //Remember that its a 16x2 display
+    private Person person;
+    private static final String[] messages = {"Message\nOptions","Second\nScreen"}; //Remember that its a 16x2 display
     public sendText() {
-        this.person = Configuration.People.DEFAULT;
+        this.person = new Person("DEFAULT","DEFAULT");
         currentMenu = -1;
     }
 
-    public sendText(Configuration.People person) {
+    public sendText(Person person) {
         this.person = person;
         currentMenu = -1;
     };
@@ -60,7 +60,7 @@ public class sendText implements LCDApps {
                 case SELECT:
                     ilcd.clear();
                     ilcd.setText("Loading...");
-                    sendText(person.email, messages[currentMenu]);
+                    sendText(person.getEmail(), messages[currentMenu]);
                     ilcd.clear();
                     ilcd.setText("Sent!");
                     break;
