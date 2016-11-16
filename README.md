@@ -22,9 +22,15 @@ For Weather Forecast usage:
     1. http://hirt.se/blog/?p=464 -  http://hirt.se/downloads/software/rpi/lcd.jar
     
 This api key will need to be in Configuration.java before the jar is built.
-  4. To emulate the screen declare a final ILCD ilcd = new MockupLCD();
-  5. When ready to deploy to the Pi declare the ILCD as final ILCD ilcd = new RealLCD();;
-     * Make sure to a build a jar with libraries included for running on RPi hardware
+  4. To emulate the screen declare a 
+```Java
+final ILCD ilcd = new MockupLCD();
+```
+  5. When ready to deploy to the Pi declare the ILCD as 
+```Java
+final ILCD ilcd = new RealLCD();
+```
+* Make sure to a build a jar with libraries included for running on RPi hardware
 
 # Setting up the Raspberry Pi
 1. Hardware:
