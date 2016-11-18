@@ -6,7 +6,6 @@ import se.hirt.pi.adafruitlcd.*;
 import se.hirt.pi.adafruitlcd.mockup.MockupLCD;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 
 public class Runner {
@@ -16,7 +15,6 @@ public class Runner {
         inApp = false;
         currentMenu = 0;
         defaultColor = Color.RED;
-        System.out.println(Arrays.asList(ConfigurationEnums.peopleArrayList));
     }
     private static final LCDApps[] APPS = new LCDApps[]{
             //INSERT MENU ITEMS HERE

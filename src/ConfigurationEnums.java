@@ -3,7 +3,6 @@ import org.ini4j.Ini;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by james on 11/9/16.
@@ -58,6 +57,5 @@ public class ConfigurationEnums {
                 peopleArrayList.add(new Person(foo[i],foo[i+1]));
             }
         }
-        System.out.println(Arrays.asList(peopleArrayList));
     }
 }
