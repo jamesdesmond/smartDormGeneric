@@ -19,7 +19,7 @@ For Weather Forecast usage:
 1. Install Oracle JDK 8
 2. Clone https://github.com/jamesdesmond/smartDormGeneric
 3. Add the following libraries to your LCD Project:
-    1. http://hirt.se/blog/?p=464 -  http://hirt.se/downloads/software/rpi/lcd.jar
+    * http://hirt.se/blog/?p=464 -  http://hirt.se/downloads/software/rpi/lcd.jar
     
 This api key will need to be in Configuration.java before the jar is built.
   4. To emulate the screen declare a 
