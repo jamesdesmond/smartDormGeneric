@@ -7,7 +7,7 @@ http://hirt.se/blog/?p=464 - http://hirt.se/downloads/software/rpi/lcd.jar
 
 # SendText Prerequisites
 Mutt installed on the raspberry pi - http://www.mutt.org/doc/manual/
-INSERT CONFIG INSTRUCTIONS FOR MUTT
+TODO: Add Mutt config instructions
 
 # ShowWeather Prerequisites
 For Weather Forecast usage: 
@@ -37,11 +37,17 @@ final ILCD ilcd = new RealLCD();
     1. https://learn.adafruit.com/adafruit-16x2-character-l2. cd-plus-keypad-for-raspberry-pi/assembly
     1. Base Software on the Pi:
         1. Install Oracle JRE 8:
-            * INSTALL GUIDE HERE
+            * Ensure using
+            ```Bash
+            java -version
+            ```
+            that the Oracle JRE is in use
         1. Install pi4J:
             * http://pi4j.com/download.html
         1. Install and configure mutt
-            * INSTALL AND CONFIG GUIDE HERE
+            * Look to the "SendText Prerequisites" section for more information
+        1. Add an entry to the root users crontab file:
+            * TODO: Add instructions on adding a crontab as well as the command itself
 
 # Running the software on the Raspberry PI
 1. Download your generated .jar file to a location on the raspberry pi
