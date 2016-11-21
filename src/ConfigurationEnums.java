@@ -47,6 +47,7 @@ public class ConfigurationEnums {
             e.printStackTrace();
         }
     }
+
     public static ArrayList<Person> peopleArrayList = new ArrayList<>();
     private static void createPeople(Ini ini) {
         String[] foo = ini.get("sendText","CONTACTS").split(",|:");
@@ -55,6 +56,9 @@ public class ConfigurationEnums {
                 System.out.println("foo[i]" + foo[i]);
                 System.out.println("foo[i+1]" + foo[i+1]);
                 peopleArrayList.add(new Person(foo[i],foo[i+1]));
+            }
+            for (Person p : peopleArrayList) {
+                System.out.println(p.getName() + "|" + p.getEmail());
             }
         }
     }

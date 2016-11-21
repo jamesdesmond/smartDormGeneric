@@ -6,8 +6,8 @@ public class Person {
     private String email;
 
     public Person(String name, String email) {
-        name = this.name;
-        email = this.email;
+        this.name = name;
+        this.email = email;
     }
     public String getName() {
         return name;

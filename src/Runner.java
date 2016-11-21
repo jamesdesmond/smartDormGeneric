@@ -11,7 +11,6 @@ import java.io.IOException;
 public class Runner {
     public Runner() {
         ConfigurationEnums.readConfigurationFile();
-        System.out.println("nice");
         inApp = false;
         currentMenu = 0;
         defaultColor = Color.RED;
