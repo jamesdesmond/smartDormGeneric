@@ -94,6 +94,9 @@ public class sendText implements LCDApps {
                         sendText(person.getEmail(), messages.get(currentMessageMenu));
                         ilcd.clear();
                         ilcd.setText("Sent!");
+                        inSelectContact = true;
+                        currentContactMenu = 0;
+                        currentMessageMenu = 0;
                         break;
                 }
             }
