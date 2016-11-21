@@ -3,7 +3,7 @@
  */
 
 import se.hirt.pi.adafruitlcd.*;
-import se.hirt.pi.adafruitlcd.mockup.MockupLCD;
+import se.hirt.pi.adafruitlcd.impl.RealLCD;
 
 import java.io.IOException;
 
@@ -92,7 +92,7 @@ public class Runner {
     }
 
     public static void main(String Args[]) throws IOException {
-        final ILCD ilcd = new MockupLCD();
+        final ILCD ilcd = new RealLCD();
         new Runner().menu(ilcd);
     }
 }
