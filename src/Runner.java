@@ -16,10 +16,9 @@ public class Runner {
         defaultColor = Color.RED;
     }
     private static final LCDApps[] APPS = new LCDApps[]{
-            //INSERT MENU ITEMS HERE
             //Be careful to only reference indices in peopleArrayList that have been filled
             new showWeather(),
-            new sendText(), //TODO: Figure out how to make this work
+            new sendText(),
             new showIP(),
             new Random(),
             new Settings(),

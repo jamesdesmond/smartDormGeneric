@@ -3,7 +3,6 @@ import se.hirt.pi.adafruitlcd.ILCD;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by james on 10/12/16.
@@ -26,8 +25,6 @@ public class sendText implements LCDApps {
         currentContactMenu = 0;
         messages = ConfigurationEnums.messageArrayList;
         peopleArrayList = ConfigurationEnums.peopleArrayList;
-        System.out.println(Arrays.asList("xxx" + peopleArrayList));
-        System.out.println(peopleArrayList.get(0).getName());
     }
 
     private void sendText(String address, String message) {
@@ -56,7 +53,6 @@ public class sendText implements LCDApps {
                         currentContactMenu++;
                         currentContactMenu = (currentContactMenu > peopleArrayList.size() -1) ? 0 : currentContactMenu;
                         ilcd.clear();
-                        System.out.println("RIGHTCASE: " + peopleArrayList.get(currentContactMenu).getName() + ":" + peopleArrayList.get(currentContactMenu).getEmail());
                         ilcd.setText(peopleArrayList.get(currentContactMenu).getName());
                         break;
                     case LEFT:

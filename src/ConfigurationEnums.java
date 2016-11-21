@@ -59,12 +59,7 @@ public class ConfigurationEnums {
         String[] foo = ini.get("sendText","CONTACTS").split(",|:");
         if (foo.length % 2 == 0) {
             for(int i = 0; i < foo.length;i += 2) {
-                System.out.println("foo[i]" + foo[i]);
-                System.out.println("foo[i+1]" + foo[i+1]);
                 peopleArrayList.add(new Person(foo[i],foo[i+1]));
-            }
-            for (Person p : peopleArrayList) {
-                System.out.println(p.getName() + "|" + p.getEmail());
             }
         }
     }
