@@ -3,6 +3,7 @@ import org.ini4j.Ini;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by james on 11/9/16.
@@ -32,10 +33,6 @@ public class ConfigurationEnums {
         }
     }
 
-    /*
-     *sendText config
-     */
-
     public static void readConfigurationFile() {
         try {
             Ini ini = new Ini(new File("Configuration.ini"));
@@ -43,11 +40,20 @@ public class ConfigurationEnums {
             coordinates[1] = ini.get("showWeather", "LONGITUDE");
             api = ini.get("showWeather", "API");
             createPeople(ini);
+            createMessages(ini);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /*
+     *sendText config
+     */
+
+    public static ArrayList<String> messageArrayList = new ArrayList<>();
+    private static void createMessages(Ini ini) {
+        messageArrayList = new ArrayList<>(Arrays.asList(ini.get("sendText","MESSAGES").split(",")));
+    }
     public static ArrayList<Person> peopleArrayList = new ArrayList<>();
     private static void createPeople(Ini ini) {
         String[] foo = ini.get("sendText","CONTACTS").split(",|:");

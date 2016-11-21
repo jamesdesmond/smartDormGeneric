@@ -16,20 +16,21 @@ public class sendText implements LCDApps {
     private int currentMessageMenu;
     private int currentContactMenu;
     private Person person;
-    private static final String[] messages = {"Message\nOptions","Second\nScreen"}; //Remember that its a 16x2 display
+    private static ArrayList<String> messages;
     private static ArrayList<Person> peopleArrayList;
     private boolean inSelectContact = true;
     public sendText() {
+        ConfigurationEnums.readConfigurationFile();
         this.person = new Person("DEFAULT","DEFAULT");
         currentMessageMenu = 0;
         currentContactMenu = 0;
-        ConfigurationEnums.readConfigurationFile();
+        messages = ConfigurationEnums.messageArrayList;
         peopleArrayList = ConfigurationEnums.peopleArrayList;
         System.out.println(Arrays.asList("xxx" + peopleArrayList));
         System.out.println(peopleArrayList.get(0).getName());
     }
 
-    private  void sendText(String address, String message) {
+    private void sendText(String address, String message) {
         String[] command = {"/bin/bash", "-c", "mutt -F /root/.muttrc -s \"SmartDorm\" " + address + " <<< \"" + message + "\""};
         ProcessBuilder processBuilder = new ProcessBuilder(command);
         try {
@@ -68,27 +69,29 @@ public class sendText implements LCDApps {
                         inSelectContact = false;
                         person = peopleArrayList.get(currentContactMenu);
                         ilcd.clear();
-                        ilcd.setText(messages[currentMessageMenu]);
+                        ilcd.setText(messages.get(currentMessageMenu));
+                        //ilcd.setText(messages[currentMessageMenu]);
                         break;
                 }
             } else {
                 switch (button) {
                     case RIGHT:
                         currentMessageMenu++;
-                        currentMessageMenu = (currentMessageMenu > messages.length - 1) ? 0 : currentMessageMenu;
+                        currentMessageMenu = (currentMessageMenu > messages.size() - 1) ? 0 : currentMessageMenu;
                         ilcd.clear();
-                        ilcd.setText(messages[currentMessageMenu]);
+                        //ilcd.setText(messages[currentMessageMenu]);
+                        ilcd.setText(messages.get(currentMessageMenu));
                         break;
                     case LEFT:
                         currentMessageMenu--;
-                        currentMessageMenu = (currentMessageMenu < 0) ? messages.length - 1 : currentMessageMenu;
+                        currentMessageMenu = (currentMessageMenu < 0) ? messages.size() - 1 : currentMessageMenu;
                         ilcd.clear();
-                        ilcd.setText(messages[currentMessageMenu]);
+                        ilcd.setText(messages.get(currentMessageMenu));
                         break;
                     case SELECT:
                         ilcd.clear();
                         ilcd.setText("Loading...");
-                        sendText(person.getEmail(), messages[currentMessageMenu]);
+                        sendText(person.getEmail(), messages.get(currentMessageMenu));
                         ilcd.clear();
                         ilcd.setText("Sent!");
                         break;
