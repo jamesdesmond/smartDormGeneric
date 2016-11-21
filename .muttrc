@@ -1,0 +1,14 @@
+set from = "SmartDorm"
+set realname = "SmartDorm"
+set imap_user = "user@gmail.com"
+set imap_pass = "username"
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed ="+[Gmail]/Drafts"
+set header_cache =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+set certificate_file =~/.mutt/certificates
+set smtp_url = "smtps://user@gmail.com@smtp.gmail.com:465/"
+set smtp_pass = "user"
+set move = no
+set imap_keepalive = 900
