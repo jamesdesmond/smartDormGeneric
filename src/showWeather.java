@@ -9,32 +9,53 @@ import java.util.Arrays;
 import java.util.Calendar;
 
 /**
- * Created by james on 9/24/16.
+ * **********************
+ * Description
+ * **********************
+ *
+ * Shows the current weather as well as a 6-day forecast
+ *
+ * **********************
+ * Analysis
+ * **********************
+ *
+ * Inputs: Location via Configuration.ini, api key via Configuration.ini
+ * Outputs: LCD
+ *
+ * **********************
+ * Pseudocode
+ * **********************
+ * 1.Display output of either WeatherMainScreen or WeatherSixDay
  */
 
 public class showWeather implements LCDApps {
     private final WeatherApps[] WEATHER_APPS = new WeatherApps[]{new WeatherMainScreen(), new WeatherSixDay()};
     private int currentMenu;
 
+    /**
+     * initializes the menu at 0
+     */
     public showWeather() {
         currentMenu = 0;
     }
 
-    ;
-
+    /**
+     * Handles the menu for showWeather
+     * @param ilcd LCD
+     * @param button buttonpresses
+     * @throws IOException
+     */
     private void menu(ILCD ilcd, Button button) throws IOException {
         ilcd.setText(WEATHER_APPS[0].toString());
         try {
             switch (button) {
                 case RIGHT:
-                    //ilcd.clear();
                     currentMenu++;
                     currentMenu = (currentMenu > WEATHER_APPS.length - 1) ? 0 : currentMenu;
                     ilcd.clear();
                     ilcd.setText(WEATHER_APPS[currentMenu].toString());
                     break;
                 case LEFT:
-                    //ilcd.clear();
                     currentMenu--;
                     currentMenu = (currentMenu < 0) ? WEATHER_APPS.length - 1 : currentMenu;
                     ilcd.clear();
@@ -46,29 +67,65 @@ public class showWeather implements LCDApps {
         }
     }
 
+    /**
+     * Gets name
+     * @return name
+     */
     @Override
     public String getName() {
         return "Weather";
     }
 
+    /**
+     * Handles button presses
+     * @param ilcd LCD
+     * @param button buttonpresses
+     * @throws IOException
+     */
     @Override
     public void run(ILCD ilcd, Button button) throws IOException {
         menu(ilcd, button);
     }
 
+    /**
+     * Handles initial run of showWeather()
+     * @param ilcd LCD
+     * @throws IOException
+     */
     public void run(ILCD ilcd) throws IOException {
         ilcd.clear();
         ilcd.setText("Loading...");
         ilcd.setText(WEATHER_APPS[0].toString());
     }
 
+    /**
+     *  **********************
+     *  Description
+     *  **********************
+     *
+     *  Generates a 6 day forecast
+     *
+     *  **********************
+     *  Analysis
+     *  **********************
+     *
+     *  Inputs:Todays date,api key
+     *  Outputs:Six Day forecast
+     */
     class WeatherSixDay implements WeatherApps {
-
+        /**
+         * Gets name
+         * @return name
+         */
         @Override
         public String getName() {
             return "6 Day Forecast";
         }
 
+        /**
+         * Generates 6 day forecast
+         * @return 6 day forecast
+         */
         public String toString() {
             String[] daysOfTheWeek = new String[]{"M", "T", "W", "T", "F", "S", "S", "M", "T", "W", "T", "F", "S", "S"};
             String[] dayFirstLetter = new String[6];
@@ -98,12 +155,44 @@ public class showWeather implements LCDApps {
         }
     }
 
+    /**
+     * **********************
+     * Description
+     * **********************
+     *
+     * Generates a forecast for today using the high, low, precipitation chance, and current temp
+     *
+     * **********************
+     * Analysis
+     * **********************
+     *
+     * Inputs: api
+     * Outputs: todays forecast
+     *
+     * **********************
+     * Pseudocode
+     * **********************
+     *
+     * Get todays weather
+     * Get the high, low, current temp, and precipitation chance
+     * Based on the length of those 4 generate an "offset" string of space characters
+     * Combine string
+     * return string
+     */
     class WeatherMainScreen implements WeatherApps {
+        /**
+         * Gets name
+         * @return name
+         */
         @Override
         public String getName() {
             return "Weather Forecast";
         }
 
+        /**
+         * Gets todays forecast and generates it to fit a 16x2 LCD
+         * @return todays forecast
+         */
         public String toString() {
             //Getting api responses
             String api = ConfigurationEnums.api;
@@ -138,7 +227,7 @@ public class showWeather implements LCDApps {
 }
 
 /**
- * Created by james on 10/14/16.
+ * Allows for arrays of WeatherApps
  */
 interface WeatherApps {
     String getName();

@@ -4,12 +4,30 @@ import se.hirt.pi.adafruitlcd.ILCD;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Created by james on 10/12/16.
- */
-/*
- *Tip for having multiple possible recipients:
- * In Runners LCDApps[] add a separate entry for each person, e.g. new sendText(Configuration.People.DEFAULT)
+/***
+ * **********************
+ * Description
+ * **********************
+ *
+ * Sends text messages through mutt and sms email gateways
+ *
+ * **********************
+ * Analysis
+ * **********************
+ *
+ * Inputs: Contacts from Configuration.ini
+ * Outputs: LCD,Emails
+ *
+ * **********************
+ * Pseudocode
+ * **********************
+ *
+ * Select person
+ * Select message
+ * combine person + message into mutt command
+ * execute mutt command
+ *
+ * @author james desmond
  */
 public class sendText implements LCDApps {
     private int currentMessageMenu;
@@ -18,6 +36,10 @@ public class sendText implements LCDApps {
     private static ArrayList<String> messages;
     private static ArrayList<Person> peopleArrayList;
     private boolean inSelectContact = true;
+
+    /**
+     * Constructor, sets up fields to correct values
+     */
     public sendText() {
         ConfigurationEnums.readConfigurationFile();
         this.person = new Person("DEFAULT","DEFAULT");
@@ -27,6 +49,11 @@ public class sendText implements LCDApps {
         peopleArrayList = ConfigurationEnums.peopleArrayList;
     }
 
+    /**
+     * Sends emails through mutt
+     * @param address email address to be sent to
+     * @param message message to send with the email
+     */
     private void sendText(String address, String message) {
         String[] command = {"/bin/bash", "-c", "mutt -F /root/.muttrc -s \"SmartDorm\" " + address + " <<< \"" + message + "\""};
         ProcessBuilder processBuilder = new ProcessBuilder(command);
@@ -40,11 +67,21 @@ public class sendText implements LCDApps {
         }
     }
 
+    /**
+     * Gets Name
+     * @return name
+     */
     @Override
     public String getName() {
         return "Texting";
     }
 
+    /**
+     * Displays menu for SendText, used for selecting people and messages
+     * @param ilcd LCD
+     * @param button used for reading buttonpresses
+     * @throws IOException
+     */
     private void menu(ILCD ilcd, Button button)throws IOException {
         try {
             if (inSelectContact) {
@@ -100,10 +137,23 @@ public class sendText implements LCDApps {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Passes buttonpresses through to menu()
+     * @param ilcd LCD
+     * @param button used for reading button presses
+     * @throws IOException
+     */
     @Override
     public void run (ILCD ilcd, Button button) throws IOException {
         menu(ilcd , button);
     }
+
+    /**
+     * Used for the initial sendText.run()
+     * @param ilcd LCD
+     * @throws IOException
+     */
     public void run (ILCD ilcd) throws IOException {
         ilcd.clear();
         ilcd.setText(peopleArrayList.get(currentContactMenu).getName());

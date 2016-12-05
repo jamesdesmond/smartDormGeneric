@@ -6,9 +6,38 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Created by james on 11/9/16.
+ * **********************
+ * Description
+ * **********************
+ *
+ * Handles reading in settings from Configuration.ini
+ *
+ * **********************
+ * Analysis
+ * **********************
+ *
+ * Inputs: Configuration.ini
+ * Outputs: none
+ *
+ * **********************
+ * Pseudocode
+ * **********************
+ *
+ * Read Configuration.ini values in variables
  */
 public class ConfigurationEnums {
+    public static void readConfigurationFile() {
+        try {
+            Ini ini = new Ini(new File("Configuration.ini"));
+            coordinates[0] = ini.get("showWeather", "LATITUDE");
+            coordinates[1] = ini.get("showWeather", "LONGITUDE");
+            api = ini.get("showWeather", "API");
+            createPeople(ini);
+            createMessages(ini);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     /*
     *showWeather config
     */
@@ -32,20 +61,6 @@ public class ConfigurationEnums {
             return index;
         }
     }
-
-    public static void readConfigurationFile() {
-        try {
-            Ini ini = new Ini(new File("Configuration.ini"));
-            coordinates[0] = ini.get("showWeather", "LATITUDE");
-            coordinates[1] = ini.get("showWeather", "LONGITUDE");
-            api = ini.get("showWeather", "API");
-            createPeople(ini);
-            createMessages(ini);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     /*
      *sendText config
      */

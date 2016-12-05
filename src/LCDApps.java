@@ -4,7 +4,24 @@ import se.hirt.pi.adafruitlcd.ILCD;
 import java.io.IOException;
 
 /**
- * Created by james on 10/13/16.
+ * **********************
+ * Description
+ * **********************
+ *
+ * Interface for handling creation of new LCDApps
+ *
+ * **********************
+ * Analysis
+ * **********************
+ *
+ * Inputs:none
+ * Outputs:none
+ *
+ * **********************
+ * Pseudocode
+ * **********************
+ *
+ * n/a
  */
 
 public interface LCDApps {

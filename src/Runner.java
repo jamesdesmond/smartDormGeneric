@@ -7,7 +7,34 @@ import se.hirt.pi.adafruitlcd.impl.RealLCD;
 
 import java.io.IOException;
 
-
+/**
+ * **********************
+ * Description
+ * **********************
+ *
+ * Runner manages the main menu of SmartDorm
+ * as well as handling LCDApp opening and closing
+ *
+ * **********************
+ * Analysis
+ * **********************
+ *
+ * Creates a RealLCD in main()
+ * Inputs: LCD buttons
+ * Outputs: LCD
+ *
+ * **********************
+ * Pseudocode
+ * **********************
+ * when downButton is pressed:
+ *  show next item in LCDApps
+ * when upButton is pressed:
+ *  show previous item in LCDApps
+ * when select is pressed:
+ *  run currrent LCDApp
+ *
+ *  @author james desmond
+ */
 public class Runner {
     public Runner() {
         ConfigurationEnums.readConfigurationFile();
@@ -16,7 +43,6 @@ public class Runner {
         defaultColor = Color.RED;
     }
     private static final LCDApps[] APPS = new LCDApps[]{
-            //Be careful to only reference indices in peopleArrayList that have been filled
             new showWeather(),
             new sendText(),
             new showIP(),
@@ -29,6 +55,11 @@ public class Runner {
 
     private Color defaultColor;
 
+    /**
+     * Handles button presses to show a main menu
+     * @param ilcd LCD to be used
+     * @throws IOException
+     */
     private void menu(ILCD ilcd) throws IOException {
         ilcd.setBacklight(defaultColor);
         ilcd.clear();
@@ -90,6 +121,11 @@ public class Runner {
         }
     }
 
+    /**
+     * Creates the RealLCD and starts the menu
+     * @param Args
+     * @throws IOException
+     */
     public static void main(String Args[]) throws IOException {
         final ILCD ilcd = new RealLCD();
         new Runner().menu(ilcd);
