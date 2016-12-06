@@ -4,27 +4,22 @@ import se.hirt.pi.adafruitlcd.ILCD;
 import java.io.IOException;
 
 /**
+ * @author James Desmond
+ * SmartDormGeneric Final Assignment
+ * CS1000-Fall 2016
+ * Due: 12/6/16
+ *
  * **********************
  * Description
  * **********************
  *
  * Shows the current IP of the machine
  *
- * **********************
- * Analysis
- * **********************
- * Inputs: none
- * Outputs: IP Address on LCD
- *
- * **********************
- * Pseudocode
- * **********************
- *
- * 1.Display IP address on screen
  */
+
 public class showIP implements LCDApps {
     /**
-     * Nothing to set up
+     * Default Constructor, nothing to do
      */
     public showIP(){};
 
@@ -38,21 +33,11 @@ public class showIP implements LCDApps {
 
     }
 
-    /**
-     * Gets name
-     * @return name
-     */
     @Override
     public String getName() {
         return "Show IP Address";
     }
 
-    /**
-     * Handles button presses
-     * @param ilcd LCD
-     * @param button buttonpresses
-     * @throws IOException
-     */
     @Override
     public void run (ILCD ilcd, Button button) throws IOException {
         ilcd.clear();

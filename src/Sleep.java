@@ -5,50 +5,29 @@ import se.hirt.pi.adafruitlcd.ILCD;
 import java.io.IOException;
 
 /**
+ * @author James Desmond
+ * SmartDormGeneric Final Assignment
+ * CS1000-Fall 2016
+ * Due: 12/6/16
+ *
  * **********************
  * Description
  * **********************
  *
  * Turns off displays backlight
  *
- * **********************
- * Analysis
- * **********************
- *
- * Inputs: None
- * Outputs: LCD backlight
- *
- * **********************
- * Pseudocode
- * **********************
- *
- * Turn off backlight
  */
 public class Sleep implements LCDApps {
-    /**
-     * Gets name
-     * @return name
-     */
+
     @Override
     public String getName() {
         return "Sleep Display";
     }
 
-    /**
-     * Does nothing
-     * @param ilcd
-     * @param button
-     * @throws IOException
-     */
     @Override
     public void run(ILCD ilcd, Button button) throws IOException {
     }
 
-    /**
-     * Turns the backlight off
-     * @param ilcd
-     * @throws IOException
-     */
     @Override
     public void run(ILCD ilcd) throws IOException {
         ilcd.setBacklight(Color.OFF);

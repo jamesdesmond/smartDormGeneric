@@ -5,40 +5,47 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /***
+ * @author James Desmond
+ * SmartDormGeneric Final Assignment
+ * CS1000-Fall 2016
+ * Due: 12/6/16
+ *
  * **********************
  * Description
  * **********************
  *
- * Sends text messages through mutt and sms email gateways
+ * Sends text messages through mutt and SMS email gateways
  *
- * **********************
- * Analysis
- * **********************
- *
- * Inputs: Contacts from Configuration.ini
- * Outputs: LCD,Emails
- *
- * **********************
- * Pseudocode
- * **********************
- *
- * Select person
- * Select message
- * combine person + message into mutt command
- * execute mutt command
- *
- * @author james desmond
  */
 public class sendText implements LCDApps {
+    /**
+     * Tracks current message being displayed
+     */
     private int currentMessageMenu;
+    /**
+     * Tracks current contact being diplsayed
+     */
     private int currentContactMenu;
+    /**
+     * Person to be sent a message
+     */
     private Person person;
+    /**
+     * ArrayList of message options
+     */
     private static ArrayList<String> messages;
+    /**
+     * ArrayList of contact options
+     */
     private static ArrayList<Person> peopleArrayList;
+    /**
+     * True if the select contact menu is visible
+     */
     private boolean inSelectContact = true;
 
     /**
-     * Constructor, sets up fields to correct values
+     * Default Constructor, Reads Configuration.ini, sets person to a default person, sets currentMessageMenu to 0,
+     * sets currentContactMenu to 0, sets messages to the message choices in Configuration, sets peopleArrayList to the contact choices in Configuration
      */
     public sendText() {
         ConfigurationEnums.readConfigurationFile();
@@ -67,10 +74,6 @@ public class sendText implements LCDApps {
         }
     }
 
-    /**
-     * Gets Name
-     * @return name
-     */
     @Override
     public String getName() {
         return "Texting";
@@ -138,12 +141,6 @@ public class sendText implements LCDApps {
         }
     }
 
-    /**
-     * Passes buttonpresses through to menu()
-     * @param ilcd LCD
-     * @param button used for reading button presses
-     * @throws IOException
-     */
     @Override
     public void run (ILCD ilcd, Button button) throws IOException {
         menu(ilcd , button);

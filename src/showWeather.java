@@ -9,31 +9,31 @@ import java.util.Arrays;
 import java.util.Calendar;
 
 /**
+ * @author James Desmond
+ * SmartDormGeneric Final Assignment
+ * CS1000-Fall 2016
+ * Due: 12/6/16
+ *
  * **********************
  * Description
  * **********************
  *
  * Shows the current weather as well as a 6-day forecast
  *
- * **********************
- * Analysis
- * **********************
- *
- * Inputs: Location via Configuration.ini, api key via Configuration.ini
- * Outputs: LCD
- *
- * **********************
- * Pseudocode
- * **********************
- * 1.Display output of either WeatherMainScreen or WeatherSixDay
  */
 
 public class showWeather implements LCDApps {
+    /**
+     * Array of WeatherApps to allow for easy addition and removal of WeatherApps
+     */
     private final WeatherApps[] WEATHER_APPS = new WeatherApps[]{new WeatherMainScreen(), new WeatherSixDay()};
+    /**
+     * Tracks current position in Weather menu
+     */
     private int currentMenu;
 
     /**
-     * initializes the menu at 0
+     * Default Consctructor, initializes the menu at 0
      */
     public showWeather() {
         currentMenu = 0;
@@ -67,21 +67,12 @@ public class showWeather implements LCDApps {
         }
     }
 
-    /**
-     * Gets name
-     * @return name
-     */
     @Override
     public String getName() {
         return "Weather";
     }
 
-    /**
-     * Handles button presses
-     * @param ilcd LCD
-     * @param button buttonpresses
-     * @throws IOException
-     */
+
     @Override
     public void run(ILCD ilcd, Button button) throws IOException {
         menu(ilcd, button);
@@ -99,24 +90,19 @@ public class showWeather implements LCDApps {
     }
 
     /**
+     *  @author James Desmond
+     * SmartDormGeneric Final Assignment
+     * CS1000-Fall 2016
+     * Due: 12/6/16
+     *
      *  **********************
      *  Description
      *  **********************
      *
      *  Generates a 6 day forecast
      *
-     *  **********************
-     *  Analysis
-     *  **********************
-     *
-     *  Inputs:Todays date,api key
-     *  Outputs:Six Day forecast
      */
     class WeatherSixDay implements WeatherApps {
-        /**
-         * Gets name
-         * @return name
-         */
         @Override
         public String getName() {
             return "6 Day Forecast";
@@ -156,34 +142,19 @@ public class showWeather implements LCDApps {
     }
 
     /**
+     * @author James Desmond
+     * SmartDormGeneric Final Assignment
+     * CS1000-Fall 2016
+     * Due: 12/6/16
+     *
      * **********************
      * Description
      * **********************
      *
      * Generates a forecast for today using the high, low, precipitation chance, and current temp
      *
-     * **********************
-     * Analysis
-     * **********************
-     *
-     * Inputs: api
-     * Outputs: todays forecast
-     *
-     * **********************
-     * Pseudocode
-     * **********************
-     *
-     * Get todays weather
-     * Get the high, low, current temp, and precipitation chance
-     * Based on the length of those 4 generate an "offset" string of space characters
-     * Combine string
-     * return string
      */
     class WeatherMainScreen implements WeatherApps {
-        /**
-         * Gets name
-         * @return name
-         */
         @Override
         public String getName() {
             return "Weather Forecast";

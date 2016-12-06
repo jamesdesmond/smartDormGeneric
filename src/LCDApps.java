@@ -4,24 +4,17 @@ import se.hirt.pi.adafruitlcd.ILCD;
 import java.io.IOException;
 
 /**
- * **********************
+ * @author James Desmond
+ * SmartDormGeneric Final Assignment
+ * CS1000-Fall 2016
+ * Due: 12/6/16
+ *
+ * ******************
  * Description
  * **********************
  *
  * Interface for handling creation of new LCDApps
  *
- * **********************
- * Analysis
- * **********************
- *
- * Inputs:none
- * Outputs:none
- *
- * **********************
- * Pseudocode
- * **********************
- *
- * n/a
  */
 
 public interface LCDApps {

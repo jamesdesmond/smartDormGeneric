@@ -8,6 +8,11 @@ import se.hirt.pi.adafruitlcd.impl.RealLCD;
 import java.io.IOException;
 
 /**
+ * @author James Desmond
+ * SmartDormGeneric Final Assignment
+ * CS1000-Fall 2016
+ * Due: 12/6/16
+ *
  * **********************
  * Description
  * **********************
@@ -33,15 +38,26 @@ import java.io.IOException;
  * when select is pressed:
  *  run currrent LCDApp
  *
- *  @author james desmond
+ *
  */
 public class Runner {
+    /**
+     * Default Constructor
+     * Reads Configuration.ini,
+     * sets inApp to false,
+     * sets currentMenu to 0,
+     * sets defaultColor to Red
+     */
     public Runner() {
         ConfigurationEnums.readConfigurationFile();
         inApp = false;
         currentMenu = 0;
         defaultColor = Color.RED;
     }
+
+    /**
+     * Array of LCDApps, allowing easy addition and removal of programs from the main menu
+     */
     private static final LCDApps[] APPS = new LCDApps[]{
             new showWeather(),
             new sendText(),
@@ -50,9 +66,17 @@ public class Runner {
             new Settings(),
             new Sleep()
     };
+    /**
+     * Is SmartDorm currently in an LCDApp
+     */
     private boolean inApp;
+    /**
+     * Tracks index of the current menu item to be displayed
+     */
     private int currentMenu;
-
+    /**
+     * Default color for the backlight
+     */
     private Color defaultColor;
 
     /**

@@ -4,33 +4,32 @@ import se.hirt.pi.adafruitlcd.ILCD;
 import java.io.IOException;
 
 /**
+ * @author James Desmond
+ * SmartDormGeneric Final Assignment
+ * CS1000-Fall 2016
+ * Due: 12/6/16
+ *
  * **********************
  * Description
  * **********************
  *
- * Simulates random chance events
- *
- * **********************
- * Analysis
- * **********************
- *
- * Inputs: Buttons
- * Outputs: LCD
- *
- * **********************
- * Pseudocode
- * **********************
- * Select Pressed
- *  Run Random method for option chosen
- *  Display result
+ * Simulates random chance events of a coin flipping or a 6
+ * sided die being rolled
  *
  */
 public class Random implements LCDApps{
+    /**
+     * Array of RandomApps to allow for new RandomApps to be added
+     */
     private final RandomApps[] RANDOM_APPS = new RandomApps[] {new RollADie(),new FlipACoin()};
+    /**
+     * Keeps track of the current menu
+     */
     private int currentMenu;
 
     /**
-     * Gets menu ready
+     * Default Constructor
+     * Sets currentMenu to -1
      */
     public Random() {
         currentMenu = -1;
@@ -67,31 +66,17 @@ public class Random implements LCDApps{
         }
     }
 
-    /**
-     * Gets name
-     * @return name
-     */
+
     @Override
     public String getName() {
         return "Random Selection";
     }
 
-    /**
-     * Handles button presses
-     * @param ilcd LCD
-     * @param button buttonpresses
-     * @throws IOException
-     */
     @Override
     public void run(ILCD ilcd, Button button) throws IOException {
         menu(ilcd,button);
     }
 
-    /**
-     * Handles initial run
-     * @param ilcd LCD
-     * @throws IOException
-     */
     @Override
     public void run(ILCD ilcd) throws IOException {
         ilcd.clear();
@@ -99,24 +84,16 @@ public class Random implements LCDApps{
     }
 
     /**
+     * @author James Desmond
+     * SmartDormGeneric Final Assignment
+     * CS1000-Fall 2016
+     * Due: 12/6/16
+     *
      * **********************
      * Description
      * **********************
      *
      * Simulates a 2 sided coin being flipped
-     *
-     * **********************
-     * Analysis
-     * **********************
-     *
-     * Inputs: Random numbers
-     * Outputs: Heads or Tails
-     *
-     * **********************
-     * Pseudocode
-     * **********************
-     *
-     * If Random Number from 0 - 1 is < 0.5 display Heads else display Tails
      */
     class FlipACoin implements RandomApps {
         /**
@@ -139,40 +116,24 @@ public class Random implements LCDApps{
     }
 
     /**
+     * @author James Desmond
+     * SmartDormGeneric Final Assignment
+     * CS1000-Fall 2016
+     * Due: 12/6/16
+     *
      * **********************
      * Description
      * **********************
      *
      * Simulates a 6 sided dice roll
      *
-     * **********************
-     * Analysis
-     * **********************
-     *
-     * Inputs: Random number
-     * Outputs: ints {1,2,3,4,5,6}
-     *
-     * **********************
-     * Pseudocode
-     * **********************
-     *
-     * Get a random number from 0 - 100
-     * Return 1 - 6 based on what the random number is
      */
     class RollADie implements RandomApps {
-        /**
-         * Gets name
-         * @return name
-         */
         @Override
         public String getName() {
             return "Roll a 6-sided\ndie";
         }
 
-        /**
-         * Simulates a dice roll
-         * @return 1 - 6
-         */
         @Override
         public String run() {
             double random = Math.random() * 100;

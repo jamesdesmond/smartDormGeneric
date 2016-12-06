@@ -5,34 +5,36 @@ import se.hirt.pi.adafruitlcd.ILCD;
 import java.io.IOException;
 
 /**
+ * @author James Desmond
+ * SmartDormGeneric Final Assignment
+ * CS1000-Fall 2016
+ * Due: 12/6/16
+ *
  * **********************
  * Description
  * **********************
  *
  * Allows for the backlight of the LCD to be changed
  *
- * **********************
- * Analysis
- * **********************
- *
- * Inputs: Button presses
- * Outputs: LCD backlight color
  */
 public class Settings implements LCDApps {
+    /**
+     * Array of Color options
+     */
     private static final Color[] COLORS = new Color[] {Color.RED,Color.GREEN,}; //On my hardware these were the only distinct colors
+    /**
+     * Stores current position in menu
+     */
     private int currentMenu;
 
     /**
+     * Default Constructor,
      * Gets the settings menu ready
      */
     public Settings() {
         currentMenu = -1;
     }
 
-    /**
-     * Gets Name
-     * @return name
-     */
     @Override
     public String getName() {
         return "Change Backlight";
@@ -68,22 +70,11 @@ public class Settings implements LCDApps {
         }
     }
 
-    /**
-     * Passes buttonpresses through to menu()
-     * @param ilcd LCD
-     * @param button buttonpresses
-     * @throws IOException
-     */
     @Override
     public void run(ILCD ilcd, Button button) throws IOException {
         menu(ilcd,button);
     }
 
-    /**
-     * Handles initial calling of Settings
-     * @param ilcd LCD
-     * @throws IOException
-     */
     @Override
     public void run(ILCD ilcd) throws IOException {
         ilcd.clear();
